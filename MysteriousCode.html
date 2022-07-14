@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+// program decode_base64
+function decode_base64 (s)
+{
+    var e = {}, i, k, v = [], r = '', w = String.fromCharCode;
+    var n = [[65, 91], [97, 123], [48, 58], [43, 44], [47, 48]];
+
+    for (z in n)
+    {
+        for (i = n[z][0]; i < n[z][1]; i++)
+        {
+            v.push(w(i));
+        }
+    }
+    for (i = 0; i < 64; i++)
+    {
+        e[v[i]] = i;
+    }
+
+    for (i = 0; i < s.length; i+=72)
+    {
+        var b = 0, c, x, l = 0, o = s.substring(i, i+72);
+        for (x = 0; x < o.length; x++)
+        {
+            c = e[o.charAt(x)];
+            b = (b << 6) + c;
+            l += 6;
+            while (l >= 8)
+            {
+                r += w((b >>> (l -= 8)) % 256);
+            }
+         }
+    }
+    return r;
+}
+
+// program to reverse a string
+function reverseString(str) {
+
+    // empty string
+    let newString = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        newString += str[i];
+    }
+    return newString;
+}
+</script>
+</head>
+<body>
+<script>
+var str = decode_base64("aWFuZ25vVzpOQU06RU5JTDp0YTpzdTpuaW9K");
+var text = reverseString(str);
+document.write(text);
+</script>
+</body>
+</html>
